@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useState, useEffect } from 'react'
 function Tabla({ items }) {
-    const apiKey = process.env.APIKEY
+
     const [data, setData] = useState(items);
     const [name, setName] = useState('');
     const [precio, setPrecio] = useState(0);
@@ -16,10 +16,10 @@ function Tabla({ items }) {
     const [error, setError] = useState(false);
     const [msgError, setMsgError] = useState('');
     const [search, setSearch] = useState('');
-
+    const apikey = import.meta.env.VITE_REACT_APP_API_KEY
     const listMovies = async () => {
         try {
-            const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}=${buscar}`);
+            const response = await fetch(`https://www.omdbapi.com/?apikey=${apikey}&s=${buscar}`);
             const json = await response.json();
             //if(response.ok)
             if (json.Error) {
